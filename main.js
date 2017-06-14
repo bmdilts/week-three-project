@@ -1,26 +1,7 @@
-// When the buttons are clicked we need to save the value to a variable
-// Then we need to return those variables to another function that performs the equation
-// when equals is pushed we need to display that result and save it as a third variable
-// clear places an empty string into all the variables
 // bonus: Math.sqrt(x); for square root button
 // bonus: x % x will return the modulo of two numbers
 
-// var one = document.querySelector('#one');
-// var two = document.querySelector('#two');
-// var three = document.querySelector('#three');
-// var four = document.querySelector('#four');
-// var five = document.querySelector('#five');
-// var six = document.querySelector('#six');
-// var seven = document.querySelector('#seven');
-// var eight = document.querySelector('#eight');
-// var nine = document.querySelector('#nine');
-// var ten = document.querySelector('#ten');
 var clear = document.querySelector('#clear');
-// var add = document.querySelector('#plus');
-// var subtract = document.querySelector('#subtract');
-// var multiply = document.querySelector('#times');
-// var divide = document.querySelector('#divide');
-var point = document.querySelector('#decimal');
 var equals = document.querySelector('#equals');
 var readout = document.querySelector('#readout');
 
@@ -32,7 +13,6 @@ var operations = []
 
 for(let i = 0; i < numbers.length; i++){
   numbers[i].addEventListener("click", function(e){
-    // console.log(e.target.value);
     bucket += e.target.value;
     readout.textContent += e.target.value;
     console.log(bucket);
@@ -41,57 +21,45 @@ for(let i = 0; i < numbers.length; i++){
 
 for(let i = 0; i < operators.length; i++){
   operators[i].addEventListener("click", function(e){
-    // console.log(e.target.value);
-    // bucket.slice(0, bucket.length);
+    if(bucket.length > 0){
     operations.push(Number(bucket));
+    }
     bucket = "";
-    console.log(bucket);
     operations.push(e.target.value);
-
     readout.textContent += e.target.value;
-    console.log(bucket);
-    console.log(operations);
   })
 }
 equals.addEventListener('click', function(event){
-  operations.push(Number(bucket));
+  operations.push((Number(bucket)));
   bucket = "";
-  console.log(operations);
   for (x = 0; x < operations.length; x++){
-    if(operations[x] = "x"){
+    if(operations[x] === "x"){
       let answer = operations[x - 1] * operations[x + 1];
-      operations.splice(operations[x - 1], 3, answer);
+      operations.splice([x - 1], 3, answer);
     }
   };
   for (x = 0; x < operations.length; x++){
-    if(operations[x] = "/"){
+    if(operations[x] === "/"){
       let answer = operations[x - 1] / operations[x + 1];
-      operations.splice(operations[x - 1], 3, answer);
+      operations.splice([x - 1], 3, answer);
     }
   };
   for (x = 0; x < operations.length; x++){
-    if(operations[x] = "+"){
-      console.log(operations);
+    if(operations[x] === "+"){
       let answer = (operations[x - 1] + operations[x + 1]);
-      console.log(answer);
-      console.log(operations);
-      operations.splice(operations[x - 1], 3, answer);
-      console.log(operations);
+      operations.splice([x - 1], 3, answer);
     }
   };
   for (x = 0; x < operations.length; x++){
-    if(operations[x] = "-"){
+    if(operations[x] === "-"){
       let answer = operations[x - 1] - operations[x + 1];
-      operations.splice(operations[x - 1], 3, answer);
+      operations.splice([x - 1], 3, answer);
     }
   };
   console.log(operations);
   readout.textContent = operations;
 });
 clear.addEventListener('click', function(event){
-  // let y = event.target.value;
-  // console.log(y);
-  // operations = [];
   bucket = "";
   readout.textContent = "";
   operations = []
