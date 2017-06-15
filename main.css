@@ -5,12 +5,18 @@ body{
   font-family: Helvetica, Arial, Sans-Serif;
   font-weight: 300;
 }
+h1{
+  color: #416138;
+  text-align: center;
+  text-shadow: 1px 1px grey;
+}
 #calc_container{
   display: flex;
   flex-flow: row wrap;
   margin: 10% 30% 20% 30%;
   width: 320px;
   height: auto;
+  box-shadow: 3px 3px grey;
   border: 1px solid #FFFFFF;
 }
 #calc_container #clear{
